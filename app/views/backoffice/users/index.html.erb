@@ -1,0 +1,21 @@
+<div class="container">
+  <h1 class="text-2xl font-bold">Users</h1>
+
+  <div class="users">
+    <% @users.each do |user| %>
+      <div class="flex justify-between items-center border p-4">
+        <div>
+          <h3 class="font-bold"><%= user.name.full %></h3>
+          <span class="text-grey-500"><%= user.email %></span>
+        </div>
+        <div>
+          <% if user.id == current_user.id %>
+            <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+          <% else %>
+          <%= link_to "Delete", backoffice_user_path(user), class: "text-red-700", method: :delete %>
+        <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
